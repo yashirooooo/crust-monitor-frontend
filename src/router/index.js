@@ -63,22 +63,6 @@ Vue.use(Router);
 export default new Router({
     routes: [{
         path: '/',
-        name: '',
-        component: login,
-        hidden: true,
-        meta: {
-            requireAuth: false
-        }
-    }, {
-        path: '/login',
-        name: '登录',
-        component: login,
-        hidden: true,
-        meta: {
-            requireAuth: false
-        }
-    }, {
-        path: '/index',
         name: '首页',
         component: index,
         iconCls: 'el-icon-tickets',
