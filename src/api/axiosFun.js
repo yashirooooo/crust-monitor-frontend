@@ -30,9 +30,9 @@ const req = (method, url, params) => {
     return axios({
         method: method,
         url: url,
+        mode: "cors",
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            token: localStorage.getItem('logintoken')
+            'Content-Type': 'application/json',
         },
         data: params,
         traditional: true,

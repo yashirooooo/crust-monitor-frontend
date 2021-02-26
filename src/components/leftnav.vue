@@ -21,7 +21,7 @@
   </el-menu>
 </template>
 <script>
-import { menu } from '../api/userMG'
+
 export default {
   name: 'leftnav',
   data() {
@@ -44,110 +44,59 @@ export default {
           url: null,
           menus: [
             {
+              menuid: 666,
+              icon: 'icon-cat-skuQuery',
+              menuname: '存储市场概览',
+              hasThird: 'N',
+              url: 'market/StorageMarketOverview',
+              menus: null
+            },
+            {
               menuid: 2,
               icon: 'icon-cat-skuQuery',
-              menuname: '商品管理',
+              menuname: '工作量上报总览',
               hasThird: 'N',
-              url: 'goods/Goods',
-              menus: null
-            }
-          ]
-        },
-        {
-          menuid: 33,
-          icon: 'li-icon-dingdanguanli',
-          menuname: '订单管理',
-          hasThird: null,
-          url: null,
-          menus: [
-            {
-              menuid: 34,
-              icon: 'icon-order-manage',
-              menuname: '交易订单',
-              hasThird: 'N',
-              url: 'pay/Order',
-              menus: null
-            }
-          ]
-        },
-        {
-          menuid: 71,
-          icon: 'li-icon-xitongguanli',
-          menuname: '系统管理',
-          hasThird: null,
-          url: null,
-          menus: [
-            {
-              menuid: 72,
-              icon: 'icon-cus-manage',
-              menuname: '用户管理',
-              hasThird: 'N',
-              url: 'system/user',
+              url: 'swork/ReportedStatusOverview',
               menus: null
             },
             {
-              menuid: 174,
-              icon: 'icon-cms-manage',
-              menuname: '菜单管理',
+              menuid: 112,
+              icon: 'icon-cat-skuQuery',
+              menuname: '工作量上报详情',
               hasThird: 'N',
-              url: 'system/Module',
+              url: 'swork/ReportedStatusDetail',
               menus: null
             },
             {
-              menuid: 73,
-              icon: 'icon-news-manage',
-              menuname: '角色管理',
+              menuid: 132,
+              icon: 'icon-cat-skuQuery',
+              menuname: '文件总览',
               hasThird: 'N',
-              url: 'system/Role',
+              url: 'market/FileOverview',
               menus: null
             },
             {
-              menuid: 74,
-              icon: 'icon-cs-manage',
-              menuname: '公司管理',
+              menuid: 352,
+              icon: 'icon-cat-skuQuery',
+              menuname: '文件大小分布',
               hasThird: 'N',
-              url: 'system/Dept',
+              url: 'market/FileSizeOverview',
               menus: null
             },
             {
-              menuid: 75,
-              icon: 'icon-promotion-manage',
-              menuname: '系统环境变量',
+              menuid: 782,
+              icon: 'icon-cat-skuQuery',
+              menuname: '文件份数分布',
               hasThird: 'N',
-              url: 'system/Variable',
+              url: 'market/FileCountOverview',
               menus: null
             },
             {
-              menuid: 76,
-              icon: 'icon-cms-manage',
-              menuname: '权限管理',
+              menuid: 783,
+              icon: 'icon-cat-skuQuery',
+              menuname: '商户Staked文件',
               hasThird: 'N',
-              url: 'system/Permission',
-              menus: null
-            }
-          ]
-        },
-        {
-          menuid: 128,
-          icon: 'li-icon-shangchengxitongtubiaozitihuayuanwenjian91',
-          menuname: '支付管理',
-          hasThird: null,
-          url: null,
-          menus: [
-            {
-              menuid: 129,
-              icon: 'icon-provider-manage',
-              menuname: '支付配置信息',
-              hasThird: 'N',
-              url: 'machine/MachineConfig',
-              menus: null
-            },
-            {
-              menuid: 175,
-              icon: 'icon-provider-manage',
-              menuname: '支付配置',
-              hasThird: 'N',
-              url: 'pay/Config',
+              url: 'market/MerchantStakedInfo',
               menus: null
             }
           ]

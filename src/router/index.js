@@ -47,6 +47,14 @@ import Config from '@/views/pay/Config';
 // 监控查询
 import druidLogin from '@/views/druid/login';
 
+import ReportedStatusOverview from '@/views/swork/ReportedStatusOverview'
+import ReportedStatusDetail from '@/views/swork/ReportedStatusDetail'
+import FileOverview from '@/views/market/FileOverview'
+import FileSizeOverview from '@/views/market/FileSizeOverview'
+import FileCountOverview from '@/views/market/FileCountOverview'
+import MerchantStakedInfo from '@/views/market/MerchantStakedInfo'
+import StorageMarketOverview from '@/views/market/StorageMarketOverview'
+
 
 // 启用路由
 Vue.use(Router);
@@ -75,33 +83,33 @@ export default new Router({
         component: index,
         iconCls: 'el-icon-tickets',
         children: [{
-            path: '/goods/Goods',
-            name: '商品管理',
-            component: Goods,
-            meta: {
-                requireAuth: true
-            }
+            path: '/market/StorageMarketOverview',
+            name: '存储市场概览',
+            component: StorageMarketOverview,
         }, {
-            path: '/machine/Machine',
-            name: '机器信息管理',
-            component: Machine,
-            meta: {
-                requireAuth: true
-            }
+            path: '/swork/ReportedStatusOverview',
+            name: '工作量上报总览',
+            component: ReportedStatusOverview,
         }, {
-            path: '/machine/MachineAisle',
-            name: '货道信息管理',
-            component: MachineAisle,
-            meta: {
-                requireAuth: true
-            }
+            path: '/swork/ReportedStatusDetail',
+            name: '工作量上报详情',
+            component: ReportedStatusDetail,
         }, {
-            path: '/pay/Order',
-            name: '交易订单',
-            component: Order,
-            meta: {
-                requireAuth: true
-            }
+            path: '/market/FileOverview',
+            name: '文件总览',
+            component: FileOverview,
+        }, {
+            path: '/market/FileSizeOverview',
+            name: '文件大小分布',
+            component: FileSizeOverview
+        }, {
+            path: '/market/FileCountOverview',
+            name: '文件份数分布',
+            component: FileCountOverview
+        }, {
+            path: '/market/MerchantStakedInfo',
+            name: '商户Staked文件',
+            component: MerchantStakedInfo,
         }, {
             path: '/system/user',
             name: '用户管理',

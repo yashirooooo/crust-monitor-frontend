@@ -95,3 +95,16 @@ export const ermissionDelete = (params) => { return axios.delete("/api/Permissio
 export const roleDropDown = () => { return axios.get("/api/Role/dropDown/all?&token=" + localStorage.getItem('logintoken')).then(res => res.data) };
 // 权限管理-配置权限
 export const RolePermission = (params) => { return req("post", "/api/RolePermission/save", params) };
+
+/**
+ * 获取swork的信息
+ */
+
+export const identityReportStatusOverview = () => { return req("get", '/api/reportedStatesOverview') };
+export const queryReportedStateByCycle = () => { return axios.get('/api/reportedStates?cycle=' + 413700) };
+
+export const fileOverview = () => { return axios.get('/api/fileOverview') };
+export const fileSizeInfo = () => { return axios.get('/api/fileSizeInfo') };
+export const fileCountInfo = () => { return axios.get('/api/fileCountInfo') };
+export const merchantStakedFileCount = () => { return axios.get('/api/merchantStakedFileCount') };
+export const storageMarketInfo = () => { return axios.get('/api/storageMarketInfo') };

@@ -1,58 +1,27 @@
 /**
- * 基础菜单 工作量上报详情
+ * 基础菜单 商户Staking文件状态
  */
 <template>
   <div>
     <!-- 面包屑导航 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>工作量上报总览</el-breadcrumb-item>
+      <el-breadcrumb-item>商户Staking文件状态</el-breadcrumb-item>
     </el-breadcrumb>
     <el-table size="small" :data="listData" highlight-current-row v-loading="loading" border element-loading-text="拼命加载中" style="width: 100%;">
       <el-table-column align="center" type="selection" width="60">
       </el-table-column>
-      <el-table-column sortable prop="deptName" label="上报周期" width="300">
+      <el-table-column sortable prop="accountId" label="商户Id" width="300">
       </el-table-column>
-      <el-table-column sortable prop="deptNo" label="节点Id" width="300">
+      <el-table-column sortable prop="averageStakedCount" label="平均Staking文件份数" width="300">
       </el-table-column>
-      <el-table-column sortable prop="editTime" label="节点anchor" width="300">
-        <template slot-scope="scope">
-          <div>{{scope.row.editTime|timestampToTime}}</div>
-        </template>
-      </el-table-column>
-      <el-table-column sortable prop="editUser" label="成功次数" width="300">
-      </el-table-column>
-      <el-table-column sortable prop="editUser" label="失败次数" width="300">
-      </el-table-column>
-      <!-- <el-table-column align="center" label="操作" min-width="300">
-        <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-          <el-button size="mini" type="danger" @click="deleteUser(scope.$index, scope.row)">删除</el-button>
-        </template>
-      </el-table-column> -->
     </el-table>
-    <!-- 分页组件 -->
-    <Pagination v-bind:child-msg="pageparm" @callFather="callFather"></Pagination>
-    <!-- 编辑界面 -->
-    <el-dialog :title="title" :visible.sync="editFormVisible" width="30%" @click="closeDialog">
-      <el-form label-width="120px" :model="editForm" :rules="rules" ref="editForm">
-        <el-form-item label="部门名称" prop="deptName">
-          <el-input size="small" v-model="editForm.deptName" auto-complete="off" placeholder="请输入部门名称"></el-input>
-        </el-form-item>
-        <el-form-item label="部门代码" prop="deptNo">
-          <el-input size="small" v-model="editForm.deptNo" auto-complete="off" placeholder="请输入部门代码"></el-input>
-        </el-form-item>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button size="small" @click="closeDialog">取消</el-button>
-        <el-button size="small" type="primary" :loading="loading" class="title" @click="submitForm('editForm')">保存</el-button>
-      </div>
-    </el-dialog>
+    
   </div>
 </template>
 
 <script>
-import { deptList, deptSave, deptDelete } from '../../api/userMG'
+import { deptSave, deptDelete, merchantStakedFileCount } from '../../api/userMG'
 import Pagination from '../../components/Pagination'
 export default {
   data() {
@@ -109,7 +78,7 @@ export default {
    * 创建完毕
    */
   created() {
-    this.getdata(this.formInline)
+    this.getdata()
   },
 
   /**
@@ -117,68 +86,21 @@ export default {
    */
   methods: {
     // 获取公司列表
-    getdata(parameter) {
-      this.loading = true
+    getdata() {
       // 模拟数据开始
+      merchantStakedFileCount().then(
+          res => {
+              this.listData = res.data
+              console.log('this.listData', this.listData)
+          }
+      )
       let res = {
         code: 0,
         msg: null,
         count: 5,
-        data: [
-          {
-            addUser: null,
-            editUser: null,
-            addTime: 1521062371000,
-            editTime: 1526700200000,
-            deptId: 2,
-            deptName: 'XX分公司',
-            deptNo: '1',
-            parentId: 1
-          },
-          {
-            addUser: null,
-            editUser: null,
-            addTime: 1521063247000,
-            editTime: 1526652291000,
-            deptId: 3,
-            deptName: '上海测试',
-            deptNo: '02',
-            parentId: 1
-          },
-          {
-            addUser: null,
-            editUser: null,
-            addTime: 1526349555000,
-            editTime: 1526349565000,
-            deptId: 12,
-            deptName: '1',
-            deptNo: '11',
-            parentId: 1
-          },
-          {
-            addUser: null,
-            editUser: null,
-            addTime: 1526373178000,
-            editTime: 1526373178000,
-            deptId: 13,
-            deptName: '5',
-            deptNo: '5',
-            parentId: 1
-          },
-          {
-            addUser: null,
-            editUser: null,
-            addTime: 1526453107000,
-            editTime: 1526453107000,
-            deptId: 17,
-            deptName: 'v',
-            deptNo: 'v',
-            parentId: 1
-          }
-        ]
+        data: []
       }
       this.loading = false
-      this.listData = res.data
       this.pageparm.currentPage = this.formInline.page
       this.pageparm.pageSize = this.formInline.limit
       this.pageparm.total = res.count
@@ -212,11 +134,11 @@ export default {
     callFather(parm) {
       this.formInline.page = parm.currentPage
       this.formInline.limit = parm.pageSize
-      this.getdata(this.formInline)
+      this.getdata()
     },
     // 搜索事件
     search() {
-      this.getdata(this.formInline)
+      this.getdata()
     },
     //显示编辑界面
     handleEdit: function(index, row) {
@@ -242,7 +164,7 @@ export default {
               this.editFormVisible = false
               this.loading = false
               if (res.success) {
-                this.getdata(this.formInline)
+                this.getdata()
                 this.$message({
                   type: 'success',
                   message: '公司保存成功！'
@@ -254,7 +176,7 @@ export default {
                 })
               }
             })
-            .catch(err => {
+            .catch(() => {
               this.editFormVisible = false
               this.loading = false
               this.$message.error('公司保存失败，请稍后再试！')
@@ -265,7 +187,7 @@ export default {
       })
     },
     // 删除公司
-    deleteUser(index, row) {
+    deleteUser(row) {
       this.$confirm('确定要删除吗?', '信息', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -279,7 +201,7 @@ export default {
                   type: 'success',
                   message: '公司已删除!'
                 })
-                this.getdata(this.formInline)
+                this.getdata()
               } else {
                 this.$message({
                   type: 'info',
@@ -287,7 +209,7 @@ export default {
                 })
               }
             })
-            .catch(err => {
+            .catch(() => {
               this.loading = false
               this.$message.error('公司删除失败，请稍后再试！')
             })
@@ -315,6 +237,3 @@ export default {
   width: 100%;
 }
 </style>
-
- 
- 
