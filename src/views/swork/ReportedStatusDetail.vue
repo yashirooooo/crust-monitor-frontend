@@ -8,6 +8,14 @@
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>工作量上报详情</el-breadcrumb-item>
     </el-breadcrumb>
+    <el-form :inline="true" :model="formInline" class="user-search">
+      <el-form-item label="搜索：">
+        <el-input size="small" v-model="formInline.cycle" placeholder="输入上报周期"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button size="small" type="primary" icon="el-icon-search" @click="search">搜索</el-button>
+      </el-form-item>
+    </el-form>
     <el-table size="small" :data="listData" highlight-current-row v-loading="loading" border element-loading-text="拼命加载中" style="width: 100%;">
       <el-table-column align="center" type="selection" width="60">
       </el-table-column>
@@ -96,7 +104,7 @@ export default {
     getdata(parameter) {
       this.loading = true
 
-      queryReportedStateByCycle().then(
+      queryReportedStateByCycle(parameter.cycle).then(
           res => {
               this.listData = res.data
           }

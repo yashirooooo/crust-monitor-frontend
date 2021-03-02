@@ -11,7 +11,7 @@
     <el-table size="small" :data="listData" highlight-current-row v-loading="loading" border element-loading-text="拼命加载中" style="width: 100%;">
       <el-table-column align="center" type="selection" width="60">
       </el-table-column>
-      <el-table-column sortable prop="cycle" label="上报周期" width="300">
+      <el-table-column sortable prop="cycle" label="上报周期" width="300" show-overflow-tooltip>
       </el-table-column>
       <el-table-column sortable prop="totalReporterCount" label="上报总节点数" width="200">
       </el-table-column>

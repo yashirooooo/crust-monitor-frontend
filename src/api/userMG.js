@@ -101,7 +101,7 @@ export const RolePermission = (params) => { return req("post", "/api/RolePermiss
  */
 
 export const identityReportStatusOverview = () => { return req("get", '/api/reportedStatesOverview') };
-export const queryReportedStateByCycle = () => { return axios.get('/api/reportedStates?cycle=' + 413700) };
+export const queryReportedStateByCycle = (param) => { return axios.get('/api/reportedStates?cycle=' + param) };
 
 export const fileOverview = () => { return axios.get('/api/fileOverview') };
 export const fileSizeInfo = () => { return axios.get('/api/fileSizeInfo') };
