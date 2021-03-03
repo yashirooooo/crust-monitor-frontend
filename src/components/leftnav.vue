@@ -96,6 +96,14 @@ export default {
               hasThird: 'N',
               url: 'market/MerchantStakedInfo',
               menus: null
+            },
+            {
+              menuid: 784,
+              icon: 'icon-cat-skuQuery',
+              menuname: '文件价格',
+              hasThird: 'N',
+              url: 'market/FilePrice',
+              menus: null
             }
           ]
         }

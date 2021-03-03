@@ -108,3 +108,4 @@ export const fileSizeInfo = () => { return axios.get('/api/fileSizeInfo') };
 export const fileCountInfo = () => { return axios.get('/api/fileCountInfo') };
 export const merchantStakedFileCount = () => { return axios.get('/api/merchantStakedFileCount') };
 export const storageMarketInfo = () => { return axios.get('/api/storageMarketInfo') };
+export const filePriceList = () => { return axios.get('/api/filePriceList') };

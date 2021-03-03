@@ -11,6 +11,7 @@ import FileSizeOverview from '@/views/market/FileSizeOverview'
 import FileCountOverview from '@/views/market/FileCountOverview'
 import MerchantStakedInfo from '@/views/market/MerchantStakedInfo'
 import StorageMarketOverview from '@/views/market/StorageMarketOverview'
+import FilePrice from '@/views/market/FilePrice'
 
 
 // 启用路由
@@ -51,6 +52,10 @@ export default new Router({
             path: '/market/MerchantStakedInfo',
             name: '商户Staked文件',
             component: MerchantStakedInfo,
+        }, {
+            path: '/market/FilePrice',
+            name: '文件价格',
+            component: FilePrice,
         }]
     }]
 })
