@@ -87,48 +87,17 @@ export default {
   methods: {
     // 获取公司列表
     getdata() {
+      this.loading = true
+
       // 模拟数据开始
       fileCountInfo().then(
           res => {
               this.listData = res.data
               console.log('this.listData', this.listData)
+              this.loading = false
+              
           }
-      )
-      let res = {
-        code: 0,
-        msg: null,
-        count: 5,
-        data: []
-      }
-      this.loading = false
-      this.pageparm.currentPage = this.formInline.page
-      this.pageparm.pageSize = this.formInline.limit
-      this.pageparm.total = res.count
-      // 模拟数据结束
-
-      /***
-       * 调用接口，注释上面模拟数据 取消下面注释
-       */
-      // deptList(parameter)
-      //   .then(res => {
-      //     this.loading = false
-      //     if (res.success == false) {
-      //       this.$message({
-      //         type: 'info',
-      //         message: res.msg
-      //       })
-      //     } else {
-      //       this.listData = res.data
-      //       // 分页赋值
-      //       this.pageparm.currentPage = this.formInline.page
-      //       this.pageparm.pageSize = this.formInline.limit
-      //       this.pageparm.total = res.count
-      //     }
-      //   })
-      //   .catch(err => {
-      //     this.loading = false
-      //     this.$message.error('菜单加载失败，请稍后再试！')
-      //   })
+      )  
     },
     // 分页插件事件
     callFather(parm) {

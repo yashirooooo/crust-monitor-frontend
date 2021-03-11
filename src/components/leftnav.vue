@@ -50,19 +50,11 @@ export default {
               menus: null
             },
             {
-              menuid: 2,
+              menuid: 113,
               icon: 'icon-cat-skuQuery',
-              menuname: '工作量上报总览',
+              menuname: 'slot查询上报详情',
               hasThird: 'N',
-              url: 'swork/ReportedStatusOverview',
-              menus: null
-            },
-            {
-              menuid: 112,
-              icon: 'icon-cat-skuQuery',
-              menuname: '工作量上报详情',
-              hasThird: 'N',
-              url: 'swork/ReportedStatusDetail',
+              url: 'swork/ReportedStatusBySlot',
               menus: null
             },
             {

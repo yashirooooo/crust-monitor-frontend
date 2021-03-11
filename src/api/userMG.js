@@ -109,3 +109,5 @@ export const fileCountInfo = () => { return axios.get('/api/fileCountInfo') };
 export const merchantStakedFileCount = () => { return axios.get('/api/merchantStakedFileCount') };
 export const storageMarketInfo = () => { return axios.get('/api/storageMarketInfo') };
 export const filePriceList = () => { return axios.get('/api/filePriceList') };
+export const slotArr = () => { return axios.get('/api/slotArr') };
+export const slotReporter = (param) => { return axios.get('/api/slotReporter?start=' + param.startSlot + '&ended=' + param.endedSlot) };

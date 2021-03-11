@@ -107,13 +107,10 @@ export default {
       queryReportedStateByCycle(parameter.cycle).then(
           res => {
               this.listData = res.data
+              this.loading = false
           }
       )
 
-      this.loading = false
-      this.pageparm.currentPage = this.formInline.page
-      this.pageparm.pageSize = this.formInline.limit
-      this.pageparm.total = res.count
       // 模拟数据结束
 
       /***

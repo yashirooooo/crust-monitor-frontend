@@ -87,23 +87,18 @@ export default {
   methods: {
     // 获取公司列表
     getdata() {
+      this.loading = true
+
       // 模拟数据开始
       merchantStakedFileCount().then(
           res => {
               this.listData = res.data
               console.log('this.listData', this.listData)
+          
+              this.loading = false
+              
           }
       )
-      let res = {
-        code: 0,
-        msg: null,
-        count: 5,
-        data: []
-      }
-      this.loading = false
-      this.pageparm.currentPage = this.formInline.page
-      this.pageparm.pageSize = this.formInline.limit
-      this.pageparm.total = res.count
       // 模拟数据结束
 
       /***
