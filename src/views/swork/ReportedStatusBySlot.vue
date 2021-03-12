@@ -22,12 +22,22 @@
         <el-button size="small" type="primary" icon="el-icon-search" @click="search">搜索</el-button>
       </el-form-item>
     </el-form>
+    <el-table size="small" :data="groupData" highlight-current-row v-loading="loading" border element-loading-text="拼命加载中" style="width: 100%;">
+      <el-table-column align="center" type="selection" width="60">
+      </el-table-column>
+      <el-table-column sortable prop="key" label="id" width="300">
+      </el-table-column>
+      <el-table-column sortable prop="reportRate" label="上报成功率" width="300">
+      </el-table-column>
+      <el-table-column sortable prop="reporterCount" label="节点个数" width="300">
+      </el-table-column>
+      <el-table-column sortable prop="rate" label="占比" width="300">
+      </el-table-column>
+    </el-table>
     <el-table size="small" :data="listData" highlight-current-row v-loading="loading" border element-loading-text="拼命加载中" style="width: 100%;">
       <el-table-column align="center" type="selection" width="60">
       </el-table-column>
-      <el-table-column sortable prop="reporter" label="节点ID" width="300">
-      </el-table-column>
-      <el-table-column sortable prop="_id" label="节点Anchor" width="300">
+      <el-table-column sortable prop="_id" label="节点ID" width="300">
       </el-table-column>
       <el-table-column sortable prop="successCount" label="成功总数" width="100">
       </el-table-column>
@@ -78,6 +88,7 @@ export default {
       },
       userparm: [], //搜索权限
       listData: [], //用户数据
+      groupData: [],
       slotArr: [],
       // 分页参数
       pageparm: {
@@ -114,12 +125,11 @@ export default {
           endedSlot: parameter.endedSlot
       }).then(
           res => {
-              this.listData = res.data;
+              console.log('res.data', res.data)
+              this.listData = res.data.detail;
+              this.groupData = res.data.rateGroup;
               console.log('listData', this.listData)
               this.loading = false
-              this.pageparm.currentPage = this.formInline.page
-              this.pageparm.pageSize = this.formInline.limit
-              this.pageparm.total = res.count
           }
       )
       slotArr().then(
