@@ -11,7 +11,9 @@
     <el-table size="small" :data="listData" highlight-current-row v-loading="loading" border element-loading-text="拼命加载中" style="width: 100%;">
       <el-table-column align="center" type="selection" width="60">
       </el-table-column>
-      <el-table-column sortable prop="price" label="文件价格" width="150">
+      <el-table-column sortable prop="priceStr" label="文件价格" width="150">
+      </el-table-column>
+      <el-table-column sortable prop="resourceUtilization" label="资源占用率" width="150">
       </el-table-column>
       <el-table-column sortable prop="time" label="时间" width="300">
       </el-table-column>
