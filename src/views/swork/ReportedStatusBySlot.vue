@@ -20,6 +20,7 @@
       </el-form-item>
       <el-form-item>
         <el-button size="small" type="primary" icon="el-icon-search" @click="search">搜索</el-button>
+        <el-button size="small" type="primary" icon="el-icon-download" @click="callDownload">下载</el-button>
       </el-form-item>
     </el-form>
     <el-table size="small" :data="groupData" highlight-current-row v-loading="loading" border element-loading-text="拼命加载中" style="width: 100%;">
@@ -51,8 +52,10 @@
 </template>
 
 <script>
-import { deptList, deptSave, deptDelete, slotArr, slotReporter } from '../../api/userMG'
+import { slotArr, slotReporter, slotReporterDownload } from '../../api/userMG'
 import Pagination from '../../components/Pagination'
+import fileDownload from 'js-file-download'
+
 export default {
   data() {
     return {
@@ -90,12 +93,7 @@ export default {
       listData: [], //用户数据
       groupData: [],
       slotArr: [],
-      // 分页参数
-      pageparm: {
-        currentPage: 1,
-        pageSize: 10,
-        total: 10
-      }
+     
     }
   },
   // 注册组件
@@ -125,19 +123,24 @@ export default {
           endedSlot: parameter.endedSlot
       }).then(
           res => {
-              console.log('res.data', res.data)
               this.listData = res.data.detail;
               this.groupData = res.data.rateGroup;
-              console.log('listData', this.listData)
               this.loading = false
           }
       )
       slotArr().then(
           res => {
               this.slotArr = res.data;
-              console.log('this.slotArr', this.slotArr)
           }
       )
+      
+    },
+
+    download(parameter) {
+      slotReporterDownload({
+          startSlot: parameter.startSlot,
+          endedSlot: parameter.endedSlot
+      }).then()
       
     },
     // 分页插件事件
@@ -149,6 +152,10 @@ export default {
     // 搜索事件
     search() {
       this.getdata(this.formInline)
+    },
+
+    callDownload() {
+      this.download(this.formInline)
     },
     
     

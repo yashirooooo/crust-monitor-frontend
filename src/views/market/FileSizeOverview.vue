@@ -11,6 +11,8 @@
     <el-table size="small" :data="listData" highlight-current-row v-loading="loading" border element-loading-text="拼命加载中" style="width: 100%;">
       <el-table-column align="center" type="selection" width="60">
       </el-table-column>
+      <el-table-column sortable prop="key" label="key" width="300">
+      </el-table-column>
       <el-table-column sortable prop="fileSize" label="文件大小" width="300">
       </el-table-column>
       <el-table-column sortable prop="fileCount" label="文件数量" width="300">

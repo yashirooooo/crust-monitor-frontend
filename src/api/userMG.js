@@ -111,3 +111,4 @@ export const storageMarketInfo = () => { return axios.get('/api/storageMarketInf
 export const filePriceList = () => { return axios.get('/api/filePriceList') };
 export const slotArr = () => { return axios.get('/api/slotArr') };
 export const slotReporter = (param) => { return axios.get('/api/slotReporter?start=' + param.startSlot + '&ended=' + param.endedSlot) };
+export const slotReporterDownload = (param) => { return window.location = '/api/slotReporterDownload?start=' + param.startSlot + '&ended=' + param.endedSlot };
