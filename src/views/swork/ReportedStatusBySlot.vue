@@ -54,7 +54,6 @@
 <script>
 import { slotArr, slotReporter, slotReporterDownload } from '../../api/userMG'
 import Pagination from '../../components/Pagination'
-import fileDownload from 'js-file-download'
 
 export default {
   data() {
