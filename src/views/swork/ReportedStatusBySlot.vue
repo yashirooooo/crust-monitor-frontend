@@ -139,7 +139,7 @@ export default {
       slotReporterDownload({
           startSlot: parameter.startSlot,
           endedSlot: parameter.endedSlot
-      }).then()
+      }).then(res => console.log('success'))
       
     },
     // 分页插件事件
