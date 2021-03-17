@@ -13,6 +13,7 @@ import MerchantStakedInfo from '@/views/market/MerchantStakedInfo'
 import StorageMarketOverview from '@/views/market/StorageMarketOverview'
 import FilePrice from '@/views/market/FilePrice'
 import StatusBySlot from '@/views/swork/ReportedStatusBySlot'
+import GroupFiles from '@/views/swork/GroupFiles'
 
 
 // 启用路由
@@ -59,8 +60,12 @@ export default new Router({
             component: FilePrice,
         }, {
             path: '/swork/ReportedStatusBySlot',
-            name: '文件价格',
+            name: '根据slot查询上报',
             component: StatusBySlot,
+        }, {
+            path: '/swork/GroupFiles',
+            name: 'group总览',
+            component: GroupFiles,
         }]
     }]
 })

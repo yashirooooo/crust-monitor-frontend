@@ -17,6 +17,8 @@
       </el-table-column>
       <el-table-column sortable prop="fileCount" label="文件数量" width="300">
       </el-table-column>
+      <el-table-column sortable prop="ratio" label="占比" width="300">
+      </el-table-column>
     </el-table>
     
   </div>

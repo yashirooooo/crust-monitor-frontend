@@ -96,6 +96,14 @@ export default {
               hasThird: 'N',
               url: 'market/FilePrice',
               menus: null
+            },
+            {
+              menuid: 785,
+              icon: 'icon-cat-skuQuery',
+              menuname: 'group总览',
+              hasThird: 'N',
+              url: 'swork/GroupFiles',
+              menus: null
             }
           ]
         }

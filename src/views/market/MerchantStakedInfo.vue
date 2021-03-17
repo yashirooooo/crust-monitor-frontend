@@ -11,9 +11,27 @@
     <el-table size="small" :data="listData" highlight-current-row v-loading="loading" border element-loading-text="拼命加载中" style="width: 100%;">
       <el-table-column align="center" type="selection" width="60">
       </el-table-column>
-      <el-table-column sortable prop="accountId" label="商户Id" width="300">
+      <el-table-column sortable prop="key" label="key" width="300">
       </el-table-column>
-      <el-table-column sortable prop="averageStakedCount" label="平均Staking文件份数" width="300">
+      <el-table-column sortable prop="averageStakedCount" label="平均Staking文件倍数" width="300">
+      </el-table-column>
+      <el-table-column sortable prop="ratio" label="占比" width="300">
+      </el-table-column>
+      <el-table-column type="expand">
+        <template slot-scope="scope">
+          <el-table :data="scope.row.detail" border stripe style="width: 100%">
+            <el-table-column prop="accountId" label="accountId"></el-table-column>
+            <el-table-column prop="averageStakedCount" label="averageStakedCount"></el-table-column>
+            <el-table-column type="expand">
+            <template slot-scope="scope">
+              <el-table :data="scope.row.fileStakedInfo" border stripe style="width: 100%">
+                <el-table-column prop="cid" label="cid"></el-table-column>
+                <el-table-column prop="stakedCount" label="stakedCount"></el-table-column>
+              </el-table>
+            </template>
+          </el-table-column>
+          </el-table>
+        </template>
       </el-table-column>
     </el-table>
     

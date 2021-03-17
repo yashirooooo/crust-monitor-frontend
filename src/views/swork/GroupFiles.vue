@@ -1,59 +1,13 @@
 /**
- * 基础菜单 工作量上报总览
+ * 基础菜单 group总览
  */
 <template>
   <div>
     <!-- 面包屑导航 -->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>工作量上报详情</el-breadcrumb-item>
+      <el-breadcrumb-item>group总览</el-breadcrumb-item>
     </el-breadcrumb>
-    <el-form :inline="true" :model="formInline" class="user-search">
-      <el-form-item label="搜索：">
-        <el-select
-          v-model="formInline.startSlot"
-          clearable
-          placeholder="请选择开始slot"
-          filterable
-        >
-          <el-option
-            v-for="item in slotArr"
-            :label="item"
-            :key="item"
-            :value="item"
-          ></el-option>
-        </el-select>
-        <el-select
-          v-model="formInline.endedSlot"
-          clearable
-          placeholder="请选择结束slot"
-          filterable
-        >
-          <el-option
-            v-for="item in slotArr"
-            :label="item"
-            :key="item"
-            :value="item"
-          ></el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-button
-          size="small"
-          type="primary"
-          icon="el-icon-search"
-          @click="search"
-          >搜索</el-button
-        >
-        <el-button
-          size="small"
-          type="primary"
-          icon="el-icon-download"
-          @click="callDownload"
-          >下载</el-button
-        >
-      </el-form-item>
-    </el-form>
     <el-table
       size="small"
       :data="groupData"
@@ -67,31 +21,22 @@
     >
       <el-table-column align="center" type="selection" width="60">
       </el-table-column>
-      <el-table-column sortable prop="key" label="id" width="300">
+      <el-table-column sortable prop="ownerId" label="ownerId" width="300">
       </el-table-column>
-      <el-table-column
-        sortable
-        prop="reportRate"
-        label="上报成功率"
-        width="300"
-      >
-      </el-table-column>
-      <el-table-column
-        sortable
-        prop="reporterCount"
-        label="节点个数"
-        width="300"
-      >
-      </el-table-column>
-      <el-table-column sortable prop="rate" label="占比" width="300">
+      <el-table-column sortable prop="totalStorage" label="totalStorage" width="300">
       </el-table-column>
       <el-table-column type="expand">
         <template slot-scope="scope">
-          <el-table :data="scope.row.detail" border stripe style="width: 100%">
-            <el-table-column prop="_id" label="节点id"></el-table-column>
-            <el-table-column prop="successCount" label="成功总数"></el-table-column>
-            <el-table-column prop="failedCount" label="失败总数"></el-table-column>
-            <el-table-column prop="totalRatio" label="上报率"></el-table-column>
+          <el-table :data="scope.row.members" border stripe style="width: 100%">
+            <el-table-column prop="nodeId" label="nodeId"></el-table-column>
+            <el-table-column prop="storage" label="storage"></el-table-column>
+            <el-table-column type="expand">
+                <template slot-scope="scope">
+                    <el-table :data="scope.row.files" border stripe style="width: 100%">
+                        <el-table-column prop="cid" label="文件cid"></el-table-column>
+                    </el-table>
+                </template>
+            </el-table-column>
           </el-table>
         </template>
       </el-table-column>
@@ -100,7 +45,7 @@
 </template>
 
 <script>
-import { slotArr, slotReporter, slotReporterDownload } from "../../api/userMG";
+import { groupFiles } from "../../api/userMG";
 import Pagination from "../../components/Pagination";
 
 export default {
@@ -165,24 +110,15 @@ export default {
     getdata(parameter) {
       this.loading = true;
 
-      slotReporter({
+      groupFiles({
         startSlot: parameter.startSlot,
         endedSlot: parameter.endedSlot,
       }).then((res) => {
         this.groupData = res.data;
         this.loading = false;
       });
-      slotArr().then((res) => {
-        this.slotArr = res.data;
-      });
     },
 
-    download(parameter) {
-      slotReporterDownload({
-        startSlot: parameter.startSlot,
-        endedSlot: parameter.endedSlot,
-      }).then((res) => console.log("success"));
-    },
     // 分页插件事件
     callFather(parm) {
       this.formInline.page = parm.currentPage;
