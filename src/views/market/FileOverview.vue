@@ -13,11 +13,11 @@
       </el-table-column>
       <el-table-column sortable prop="cid" label="文件cid" width="300">
       </el-table-column>
-      <el-table-column sortable prop="file.file_size" label="文件大小" width="300">
+      <el-table-column sortable prop="file.file_size" label="文件大小(Byte)" width="300">
       </el-table-column>
       <el-table-column sortable prop="usedInfo.reported_group_count" label="上报Group数" width="300">
       </el-table-column>
-      <el-table-column sortable prop="usedInfo.used_size" label="上报总大小" width="300">
+      <el-table-column sortable prop="usedInfo.used_size" label="上报总大小(Byte)" width="300">
       </el-table-column>
     </el-table>
     
@@ -97,10 +97,7 @@ export default {
       fileOverview().then(
           res => {
               this.listData = res.data;
-              console.log('this.listData', this.listData)
-              
-              this.loading = false
-              
+              this.loading = false     
           }
       )
       // 模拟数据结束

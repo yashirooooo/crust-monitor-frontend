@@ -100,9 +100,7 @@ export default {
       // 模拟数据开始
       storageMarketInfo().then(
           res => {
-              this.listData = [res.data]
-              console.log('this.listData', this.listData)
-              
+              this.listData = [res.data]              
               this.loading = false
           }
       )

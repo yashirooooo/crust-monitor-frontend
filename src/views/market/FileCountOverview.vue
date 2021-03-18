@@ -93,7 +93,6 @@ export default {
       fileCountInfo().then(
           res => {
               this.listData = res.data
-              console.log('this.listData', this.listData)
               this.loading = false
               
           }

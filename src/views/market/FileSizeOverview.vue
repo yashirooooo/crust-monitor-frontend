@@ -13,7 +13,7 @@
       </el-table-column>
       <el-table-column sortable prop="key" label="key" width="300">
       </el-table-column>
-      <el-table-column sortable prop="fileSize" label="文件大小" width="300">
+      <el-table-column sortable prop="fileSize" label="文件大小(Byte)" width="300">
       </el-table-column>
       <el-table-column sortable prop="fileCount" label="文件数量" width="300">
       </el-table-column>
@@ -96,9 +96,7 @@ export default {
       // 模拟数据开始
       fileSizeInfo().then(
           res => {
-              this.listData = res.data
-              console.log('this.listData', this.listData)
-            
+              this.listData = res.data            
               this.loading = false
           }
       )
