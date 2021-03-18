@@ -23,13 +23,13 @@
       </el-table-column>
       <el-table-column sortable prop="ownerId" label="ownerId" width="300">
       </el-table-column>
-      <el-table-column sortable prop="totalStorage" label="totalStorage" width="300">
+      <el-table-column sortable prop="totalStorage" label="totalStorage(GB)" width="300">
       </el-table-column>
       <el-table-column type="expand">
         <template slot-scope="scope">
           <el-table :data="scope.row.members" border stripe style="width: 100%">
             <el-table-column prop="nodeId" label="nodeId"></el-table-column>
-            <el-table-column prop="storage" label="storage"></el-table-column>
+            <el-table-column prop="storage" label="storage(GB)"></el-table-column>
             <el-table-column type="expand">
                 <template slot-scope="scope">
                     <el-table :data="scope.row.files" border stripe style="width: 100%">
